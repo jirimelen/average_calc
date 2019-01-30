@@ -17,7 +17,7 @@ namespace MyLibrary
             {
                 if (database == null)
                 {
-                    database = new MyDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TodoSQLite.db3"));
+                    database = new MyDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TodoSQLite1.db3"));
                 }
                 return database;
             }

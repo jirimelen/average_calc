@@ -10,6 +10,7 @@ namespace App1
     {
         public App()
         {
+            LiveReload.Init();
             InitializeComponent();
 
             MainPage = new MainPage();
