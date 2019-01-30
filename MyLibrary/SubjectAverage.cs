@@ -7,6 +7,6 @@ namespace MyLibrary
     public class SubjectAverage
     {
         public string Name { get; set; }
-        public double Average { get; set; }
+        public string Average { get; set; }
     }
 }

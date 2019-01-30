@@ -54,7 +54,7 @@ namespace App1
                         marksImpact += mark.Impact;
                     }
                 }
-                SubAves.Add(new SubjectAverage { Name = subject.Name, Average = calculator.calculate(marksValue, marksImpact) });
+                SubAves.Add(new SubjectAverage { Name = subject.Name, Average = calculator.calculate(marksValue, marksImpact).ToString("#,##0.00") });
             }
 
             listviewSubjects.ItemsSource = SubAves;

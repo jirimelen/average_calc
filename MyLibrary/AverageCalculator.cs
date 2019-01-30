@@ -10,9 +10,10 @@ namespace MyLibrary
         {
             if(totalMarksImpact != 0 && totalMarksValue != 0)
             {
-                return (double) totalMarksValue / totalMarksImpact;
+                double average = (double) totalMarksValue / totalMarksImpact;
+                return Math.Round(average, 2);
             }
-            return 0;
+            return 0.00;
         }
     }
 }
