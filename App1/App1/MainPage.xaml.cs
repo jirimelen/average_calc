@@ -25,26 +25,27 @@ namespace App1
             db.InsertSubject(new Subject { Name = "Physical Education" });
             db.InsertSubject(new Subject { Name = "Programming" });
             */
-            /*
-            db.InsertMark(new Mark { Value = 1, Impact = 50, SubjectID = 1 });
+            
+            /*db.InsertMark(new Mark { Value = 1, Impact = 50, SubjectID = 1 });
             db.InsertMark(new Mark { Value = 2, Impact = 100, SubjectID = 5 });
             db.InsertMark(new Mark { Value = 3, Impact = 80, SubjectID = 1 });
             db.InsertMark(new Mark { Value = 4, Impact = 10, SubjectID = 3 });
-            db.InsertMark(new Mark { Value = 5, Impact = 30, SubjectID = 5 });
-            db.InsertMark(new Mark { Value = 2, Impact = 40, SubjectID = 2 });
-            */
+            db.InsertMark(new Mark { Value = 5, Impact = 30, SubjectID = 5 });*/
+            //db.InsertMark(new Mark { Value = 2.5, Impact = 40, SubjectID = 2 });
+            
             InitializeComponent();
             FillSubAves();
         }
 
         public async void FillSubAves()
         {
+            SubAves.Clear();
             List<Subject> subjects = await db.GetListOf<Subject>();
             List<Mark> marks = await db.GetListOf<Mark>();
 
             foreach (var subject in subjects)
             {
-                int marksValue = 0;
+                double marksValue = 0;
                 int marksImpact = 0;
                 foreach (var mark in marks)
                 {
@@ -56,12 +57,17 @@ namespace App1
                 }
                 SubAves.Add(new SubjectAverage { Name = subject.Name, Average = calculator.calculate(marksValue, marksImpact).ToString("#,##0.00") });
             }
-
+            // move to the function below
             listviewSubjects.ItemsSource = SubAves;
         }
 
         public void DisplaySubAves()
         {
+        }
+
+        private async void Navigate_CustomAverage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NavigationPage(new Page1()));
         }
     }
 }

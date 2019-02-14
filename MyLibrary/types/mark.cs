@@ -7,7 +7,7 @@ namespace MyLibrary.types
 {
     public class Mark : ATable
     {
-        public int Value { get; set; }
+        public double Value { get; set; }
         public int Impact { get; set; }
         public int SubjectID { get; set; }
     }
