@@ -5,8 +5,8 @@
              x:Class="App1.MainPage">
 
     <StackLayout>
-        <Label Text="loaded"></Label>
-        <ListView x:Name="listviewSubjects">
+        <!--<Label Text="loaded"></Label>-->
+        <ListView x:Name="listviewSubjects" ItemTapped="ListviewSubjects_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using MyLibrary;
 using MyLibrary.types;
+using System.Collections.ObjectModel;
 
 namespace App1
 {
@@ -13,7 +14,7 @@ namespace App1
     {
         MyDatabase db = DBManager.Database;
         AverageCalculator calculator = new AverageCalculator();
-        public List<SubjectAverage> SubAves = new List<SubjectAverage>();
+        public ObservableCollection<SubjectAverage> SubAves = new ObservableCollection<SubjectAverage>();
 
         public MainPage()
         {
@@ -26,7 +27,7 @@ namespace App1
             db.InsertSubject(new Subject { Name = "Programming" });
             */
             
-            /*db.InsertMark(new Mark { Value = 1, Impact = 50, SubjectID = 1 });
+            /*db(new Mark { Value = 1, Impact = 50, SubjectID = 1 });
             db.InsertMark(new Mark { Value = 2, Impact = 100, SubjectID = 5 });
             db.InsertMark(new Mark { Value = 3, Impact = 80, SubjectID = 1 });
             db.InsertMark(new Mark { Value = 4, Impact = 10, SubjectID = 3 });
@@ -34,10 +35,10 @@ namespace App1
             //db.InsertMark(new Mark { Value = 2.5, Impact = 40, SubjectID = 2 });
             
             InitializeComponent();
-            FillSubAves();
+            DisplaySubAves();
         }
 
-        public async void FillSubAves()
+        public async Task FillSubAves()
         {
             SubAves.Clear();
             List<Subject> subjects = await db.GetListOf<Subject>();
@@ -45,29 +46,32 @@ namespace App1
 
             foreach (var subject in subjects)
             {
-                double marksValue = 0;
-                int marksImpact = 0;
+                List<Mark> MarksToCalculate = new List<Mark>();
                 foreach (var mark in marks)
                 {
                     if (mark.SubjectID == subject.ID)
                     {
-                        marksValue += mark.Value * mark.Impact;
-                        marksImpact += mark.Impact;
+                        MarksToCalculate.Add(mark);
                     }
                 }
-                SubAves.Add(new SubjectAverage { Name = subject.Name, Average = calculator.calculate(marksValue, marksImpact).ToString("#,##0.00") });
+                SubAves.Add(new SubjectAverage { Name = subject.Name, Average = calculator.calculate(MarksToCalculate).ToString("#,##0.00") });
             }
-            // move to the function below
-            listviewSubjects.ItemsSource = SubAves;
         }
 
-        public void DisplaySubAves()
+        public async Task DisplaySubAves()
         {
+            await FillSubAves();
+            listviewSubjects.ItemsSource = SubAves;
         }
 
         private async void Navigate_CustomAverage(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new NavigationPage(new Page1()));
+        }
+
+        private void ListviewSubjects_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Navigation.PushAsync(new NavigationPage(new Page1()));
         }
     }
 }

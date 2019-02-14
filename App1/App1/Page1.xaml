@@ -4,7 +4,7 @@
              x:Class="App1.Page1">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="loaded"></Label>
+            <!--<Label Text="loaded"></Label>-->
             <ListView x:Name="listviewSubjects">
                 <ListView.ItemTemplate>
                     <DataTemplate>

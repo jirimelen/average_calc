@@ -24,7 +24,7 @@ namespace App1
             FillPicker();
 		}
 
-        private async void FillPicker()
+        private async Task FillPicker()
         {
             subjectPicker.ItemsSource = await db.GetListOf<Subject>();
         }
@@ -32,10 +32,14 @@ namespace App1
         private async void Button_Clicked(object sender, EventArgs e)
         {
             var selected = (Subject)subjectPicker.SelectedItem;
-            await db.InsertMark(new Mark { Impact = int.Parse(impactEntry.Text), Value = int.Parse(markEntry.Text), SubjectID = selected.ID });
-            var x = (TabbedPage)(this.Parent);
-            var y = (MainPage)(x.Children[0]);
-            y.FillSubAves();
+            await db.InsertMark(new Mark {
+                Impact = int.Parse(impactEntry.Text),
+                Value = int.Parse(markEntry.Text),
+                SubjectID = selected.ID
+            });
+            var SubAvesList = (MainPage)((TabbedPage)this.Parent).Children[0];
+            await SubAvesList.FillSubAves();
+
         }
     }
 }
