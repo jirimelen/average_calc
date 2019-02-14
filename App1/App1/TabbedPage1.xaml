@@ -3,8 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Local="clr-namespace:App1"
              x:Class="App1.TabbedPage1">
-  <!--Pages can be added as references or inline-->
-  <Local:MainPage Title="Subjects" />
-  <Local:Page1 Title="Custom" />
-  <Local:Page2 Title="Add mark" />
+    <!--Pages can be added as references or inline-->
+    <NavigationPage Title="Subjects">
+        <x:Arguments>
+            <Local:MainPage Title="calculator" />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Custom">
+        <x:Arguments>
+            <Local:Page1 Title="calculator" />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Add mark">
+        <x:Arguments>
+            <Local:Page2 Title="calculator" />
+        </x:Arguments>
+    </NavigationPage>
+    
+    
+    
 </TabbedPage>

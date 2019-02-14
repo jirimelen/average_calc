@@ -69,9 +69,9 @@ namespace App1
             await Navigation.PushAsync(new NavigationPage(new Page1()));
         }
 
-        private void ListviewSubjects_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void ListviewSubjects_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            Navigation.PushAsync(new NavigationPage(new Page1()));
+            await Navigation.PushAsync(new NavigationPage(new Page2()));
         }
     }
 }
