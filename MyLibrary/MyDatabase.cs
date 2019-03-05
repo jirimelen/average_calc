@@ -60,5 +60,10 @@ namespace MyLibrary
         {
             return database.DeleteAsync(item);
         }
+
+        public Task<List<Subject>> GetSubjectByName(string name)
+        {
+            return database.QueryAsync<Subject>("select * from Subject where Name=\"" + name + "\"");
+        }
     }
 }

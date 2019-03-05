@@ -31,14 +31,21 @@ namespace App1
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            var selected = (Subject)subjectPicker.SelectedItem;
+            // insert mark into db
+            var selected = (subjectPicker.SelectedItem as Subject);
             await db.InsertMark(new Mark {
                 Impact = int.Parse(impactEntry.Text),
                 Value = int.Parse(markEntry.Text),
                 SubjectID = selected.ID
             });
-            var SubAvesList = (MainPage)((TabbedPage)this.Parent).Children[0];
-            await SubAvesList.FillSubAves();
+            impactEntry.Text = String.Empty;
+            markEntry.Text = String.Empty;
+            progress_label.Text = "hotovo";
+            // update the subAves list on main page
+            var tabPage = this.Parent.Parent as TabbedPage;
+            var navPage = tabPage.Children[0] as NavigationPage;
+            var mainPage = navPage.CurrentPage as MainPage;
+            await mainPage.FillSubAves();
 
         }
     }

@@ -66,12 +66,15 @@ namespace App1
 
         private async void Navigate_CustomAverage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NavigationPage(new Page1()));
+            await Navigation.PushAsync(new Page1());
         }
 
-        private async void ListviewSubjects_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void listviewSubjects_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            await Navigation.PushAsync(new NavigationPage(new Page2()));
+            string selectedName = (e.SelectedItem as SubjectAverage).Name;
+            List<Subject> selectedSubject = await db.GetSubjectByName(selectedName);
+            var go = 2;
+            await Navigation.PushAsync(new MarksOfSubject(selectedSubject[0].ID));
         }
     }
 }

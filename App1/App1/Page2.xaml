@@ -9,6 +9,7 @@
             <Entry Keyboard="Numeric" Placeholder="Mark" x:Name="markEntry"></Entry>
             <Entry Keyboard="Numeric" Placeholder="Impact" x:Name="impactEntry"></Entry>
             <Button Text="add mark" Clicked="Button_Clicked"></Button>
+            <Label x:Name="progress_label"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

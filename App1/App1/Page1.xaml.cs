@@ -16,16 +16,29 @@ namespace App1
         MyDatabase db = DBManager.Database;
         AverageCalculator calculator = new AverageCalculator();
         public List<SubjectAverage> SubAves = new List<SubjectAverage>();
-        public Page1()
 
-        {
+        private List<int> ListViewIS = new List<int>();
+
+        public Page1() {
             InitializeComponent();
+
+            AddMark();
+        }
+
+        private void AddMark()
+        {
+            ListViewIS.Add(1);
+            listviewAves.ItemsSource = ListViewIS;
         }
 
         private void PrintResult(object sender, EventArgs e)
         {
 
         }
-        
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

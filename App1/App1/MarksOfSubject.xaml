@@ -1,28 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App1.Page1">
+             x:Class="App1.MarksOfSubject">
     <ContentPage.Content>
         <StackLayout>
-            <!--<Label Text="loaded"></Label>-->
-            <ListView x:Name="listviewAves">
+            <ListView x:Name="marksListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
                                 <StackLayout Orientation="Horizontal">
-                                    <Entry Placeholder="mark"></Entry>
-                                    <Entry Placeholder="impact"></Entry>
+                                    <Label Text="{Binding Value}"></Label>
+                                    <Label Text="{Binding Impact}"></Label>
+                                    <!--<Button Clicked="Button_Clicked" Text="delete"></Button>
+                                    <Label Text="{Binding ID}"></Label>-->
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout Orientation="Horizontal">
-                <Button Text="calculate" Clicked="PrintResult"></Button>
-                <Button Text="+" Clicked="Button_Clicked"></Button>
-            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
